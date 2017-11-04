@@ -1,0 +1,21 @@
+{
+  "name": "methods",
+  "version": "0.0.0",
+  "description": "some methods",
+  "main": "index.js",
+  "scripts": {
+    "test": "zuul --local 8080 -- ./test/setPolling.test.js"
+  },
+  "author": "xuefei",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.0",
+    "babel-polyfill": "^6.26.0",
+    "chai": "^4.1.2",
+    "nock": "^9.0.27",
+    "sinon": "^4.1.1",
+    "webpack": "^3.8.1",
+    "zuul": "^3.11.1",
+    "zuul-builder-webpack": "^1.2.0"
+  }
+}
