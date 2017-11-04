@@ -8,7 +8,10 @@ describe('setPolling', function(){
     var sandbox = sinon.createSandbox();
 
     beforeEach(function() {
-        sandbox.spy(axios, 'get')
+        // sandbox.spy(axios, 'get')
+        sandbox.stub(axios, 'get').callsFake(function fakeFn() {
+            return '{"one":1}';
+        });
     })
 
     afterEach(function(){
@@ -21,6 +24,7 @@ describe('setPolling', function(){
         const pollingControl = setPolling({
             fn: () => axios.get('/__zuul'),
             interval: 100,
+            debug: true,
             handleThen: callback
         })
 
@@ -41,11 +45,14 @@ describe('setPolling', function(){
         const pollingControl = setPolling({
             fn: () => axios.get('/__zuul'),
             interval: 100,
+            debug: true,
             handleThen: callback
         })
+        setTimeout(function() {
+            pollingControl.destroy();
+        }, 1000);
 
         setTimeout(function () {
-            pollingControl.destroy();
             assert(pollingControl.isDestroy(), 'pollingControl should destroy')
             done();
         }, 1200);
