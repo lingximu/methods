@@ -10,6 +10,8 @@
  * @property {false | function} execCondition - 执行fn的条件,为false则每次都执行，default false
  * @property {false | function} destroyCondition - 清除轮询的条件,为false则不主动进行清除，需调用者自行调用返回的pollingControl.destroy进行清除，接受result和count,default false
  */
+var Promise = require("bluebird");
+
 function setPolling(options) {
     // params init
     const emptyFunction = function () { return false }
