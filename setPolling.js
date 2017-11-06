@@ -11,6 +11,7 @@
  * @property {false | function} destroyCondition - 清除轮询的条件,为false则不主动进行清除，,default false 需调用者自行调用返回的pollingControl.destroy进行清除；
  *                                                 接收的参数 result,count ,result代表fn返回的结果，count代表fn【已经执行的次数】
  * */
+const Promise = require('bluebird')
 function setPolling(options) {
     // params init
     const emptyFunction = function () { return false }
