@@ -35,7 +35,7 @@ describe('setPolling测试', function(){
             assert(pollingControl.count() === 5, 'pollingControl.count should 5')
             done();
 
-        }, 450);
+        }, 490);
     })
 
 
