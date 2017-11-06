@@ -71,7 +71,7 @@ describe('setPolling测试', function(){
             sandbox.assert.callCount(axios.get, 3)
             sandbox.assert.callCount(callback, 3)
             done();
-        }, 550);
+        }, 590);
     })
 
     it('destroyCondition 生效', function (done) {
