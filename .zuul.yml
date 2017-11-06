@@ -3,12 +3,6 @@ ui: mocha-bdd
 browsers:
   - name: chrome
     version: 60..latest
-  - name: ie
-    version: latest
-  - name: firefox
-    version: latest
-  - name: safari
-    version: latest
 builder: zuul-builder-webpack
 webpack:
   module:
