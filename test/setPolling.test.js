@@ -1,6 +1,5 @@
 const { setPolling } = require('../index.js')
 const { expect, assert } = require('chai')
-const Promise = require('bluebird')
 const axios = require('axios')
 const sinon = require('sinon')
 
