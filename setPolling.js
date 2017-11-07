@@ -75,7 +75,6 @@ function setPolling(options) {
 
     // destroy setTimeout
     const destroy = function () {
-        debugger;
         clearTimeout(timeoutId)
         timeoutId = null;
     }
