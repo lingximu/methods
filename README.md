@@ -1,4 +1,9 @@
 # methods
 javascript methods
 
-[![Build Status](https://travis-ci.org/lingximu/methods.svg?branch=master)](https://travis-ci.org/lingximu/methods)
+## 用法
+见 xxx.md; 如setPolling方法，见setPolling.md
+
+## 测试
+npm run localTest
+
