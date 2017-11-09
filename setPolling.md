@@ -105,7 +105,7 @@ if(ipId){
     pollingControl = setPolling({
         fn: (ipId) => ipService.getInfo(ipId),
         time: 5000,
-        destroyCondition: (result, count)=> result.status === 'available',
+        destroyCondition: (result, count)=> result.status === 'available'|| !this.data.ipId,
         handleThen: (result)=>{
             if(result.status === 'available') {
                 this.data.unbinding = false;

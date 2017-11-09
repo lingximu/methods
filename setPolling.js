@@ -7,9 +7,14 @@
  * @property {function} handleThen - fn运行返回数据的处理函数，default emptyFunction; 接收的参数，result为fn返回的结果
  * @property {boolean} delay - 第一次是否延迟执行,default false
  * @property {boolean} debug - 是否打开调试，当为true时，会将执行次数在控制台打印出来，defaut false
- * @property {false | function} execCondition - 执行fn的条件,为false则每次都执行，default false; 接收的参数 count, 代表fn已经执行的次数
+ * @property {false | function} execCondition - 执行fn的条件,为false则每次都执行，default false; 接收的参数 count, 代表fn【已经执行的次数】
  * @property {false | function} destroyCondition - 清除轮询的条件,为false则不主动进行清除，,default false 需调用者自行调用返回的pollingControl.destroy进行清除；
  *                                                 接收的参数 result,count ,result代表fn返回的结果，count代表fn【已经执行的次数】
+ *
+ * @return {object} - 推荐命名为 pollingControl
+ * @property {function} destroy - 销毁定时器
+ * @property {function} isDestroy - 判断该定时器是否已销毁
+ * @property {function} count - 返回该轮询执行的次数
  * */
 function setPolling(options) {
     // params init
@@ -69,7 +74,11 @@ function setPolling(options) {
                 }
             })
         }else{
-            timeoutId = setTimeout(doStuff, interval)
+            if (destroyCondition && destroyCondition(result, count))
+                destroy()
+            // can't execute fn in next time if destroy has call
+            if(timeoutId !== null )
+                timeoutId = setTimeout(doStuff, interval)
         }
     }
 
