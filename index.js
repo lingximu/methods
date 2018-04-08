@@ -1,4 +1,4 @@
-const setPolling = require('./setPolling.js')
+const setPolling = require('./src/setPolling')
 
 
 module.exports = {

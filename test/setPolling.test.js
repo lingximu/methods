@@ -2,24 +2,27 @@ const { setPolling } = require('../index.js')
 const { expect, assert } = require('chai')
 const axios = require('axios')
 const sinon = require('sinon')
+const debug = require('debug')('methods:test:setPolling')
+
+mocha.setup({ignoreLeaks: true})
 
 describe('setPolling测试', function(){
     let sandbox = sinon.createSandbox({});
     beforeEach(function() {
         // sandbox.spy(axios, 'get')
         sandbox.stub(axios, 'get').callsFake(function fakeFn() {
-            return Promise.resolve('resolves sinon promise data');
+            return Promise.resolve(debug('axios get one'));
         });
     })
 
     afterEach(function(){
-
+        debug('afterEach restore')
         sandbox.restore()
     })
 
     it('xhr请求次数、回调次数、pollingControl返回的次数应该相同', function(done){
         var callback = sandbox.spy()
-
+        debug('setPolling will start')
         const pollingControl = setPolling({
             fn: () => axios.get('/__zuul'),
             interval: 100,
@@ -28,13 +31,13 @@ describe('setPolling测试', function(){
 
         setTimeout(function () {
             pollingControl.destroy();
-
+            debug('490 passed ')
             sandbox.assert.callCount(axios.get, 5)
             sandbox.assert.callCount(callback, 5)
             assert(pollingControl.count() === 5, 'pollingControl.count should 5')
             done();
 
-        }, 490);
+        }, 430);
     })
 
 
@@ -109,7 +112,3 @@ describe('setPolling测试', function(){
     })
 
 })
-
-
-
-
